@@ -29,11 +29,11 @@ void mainMenu();
 void printDigits(int digits);
 void editClock();
 void alarmSetup();
-void disableAllAlarms();
-void enableAllAlarms();
 void dumpID();
 void software_Reset();
 boolean readEEPROM();
+void printDate();
+char *prettify(int month);
 
 AlarmID_t mon0 = 0;
 AlarmID_t tue0 = 0;
@@ -186,13 +186,6 @@ void dumpID(){
 
 
 void alarmSetup(){
-//     for(int i=0;i<SCHEDULE_SIZE;i++){
-//       Alarm.alarmRepeat(dowMonday,schedule[i][0],schedule[i][1],10,SilenceHour);  // Monday to Friday every week
-//       Alarm.alarmRepeat(dowTuesday,schedule[i][0],schedule[i][1],10,SilenceHour);  // Monday to Friday every week
-//       Alarm.alarmRepeat(dowWednesday,schedule[i][0],schedule[i][1],10,SilenceHour);  // Monday to Friday every week
-//       Alarm.alarmRepeat(dowThursday,schedule[i][0],schedule[i][1],10,SilenceHour);  // Monday to Friday every week
-//       Alarm.alarmRepeat(dowFriday,schedule[i][0],schedule[i][1],10,SilenceHour);  // Monday to Friday every week  
-     
        mon0 = Alarm.alarmRepeat(dowMonday,7,15,10,SilenceHour);  // Monday to Friday every week
        tue0 = Alarm.alarmRepeat(dowTuesday,7,15,10,SilenceHour);  // Monday to Friday every week
        wed0 = Alarm.alarmRepeat(dowWednesday,7,15,10,SilenceHour);  // Monday to Friday every week
@@ -290,38 +283,10 @@ void setup() {
     Serial.println("Read failed");
     setTime(10,40,5,3,1,11); // set time to Saturday 8:29:00am Jan 1 2011  
   }
-  //setTime(10,40,5,23,6,14); // set time to Saturday 8:29:00am Jan 1 2011  
-  //Calendar are included in the library, 
-  // so that u don't have to set the day(ex.Saturday) manually, yay!
-  //create the alarms 
 
-  //1st class start
-  //Alarm.alarmRepeat(8,30,0, Silen);  // 8:30am every day
-  
-  //Alarm.alarmRepeat(17,45,0,EveningAlarm);  // 5:45pm every day 
-  //Alarm.alarmRepeat(dowSaturday,8,30,30,WeeklyAlarm);  // 8:30:30 every Saturday 
-  //Alarm.timerRepeat(15, Repeats);            // timer for every 15 seconds    
-  //Alarm.timerOnce(10, OnceOnly);             // called once after 10 seconds 
-  //alarmSetup();
-//   Alarm.alarmRepeat(dowMonday,7,15,10,SilenceHour);  // Monday to Friday every week
-//   Alarm.alarmRepeat(dowTuesday,7,15,10,SilenceHour);  // Monday to Friday every week
-//   Alarm.alarmRepeat(dowWednesday,7,15,10,SilenceHour);  // Monday to Friday every week
-//   Alarm.alarmRepeat(dowThursday,7,15,10,SilenceHour);  // Monday to Friday every week
-//   Alarm.alarmRepeat(dowFriday,7,15,10,SilenceHour);  // Monday to Friday every week  
    alarmSetup();
    dumpID();
   
-  //for (int i = 0; i < 5; i++){
-  //  for(int j =0; j < SCHEDULE_SIZE; j++){  
-//     Alarm.alarmRepeat(dowMonday,schedule[j][0],schedule[j][1],10,Silen);  // Monday to Friday every week
-//     Alarm.alarmRepeat(dowTuesday,schedule[j][0],schedule[j][1],10,Silen);  // Monday to Friday every week
-//     Alarm.alarmRepeat(dowWednesday,schedule[j][0],schedule[j][1],10,Silen);  // Monday to Friday every week
-//     Alarm.alarmRepeat(dowThursday,schedule[j][0],schedule[j][1],10,Silen);  // Monday to Friday every week
-//     Alarm.alarmRepeat(dowFriday,schedule[j][0],schedule[j][1],10,Silen);  // Monday to Friday every week
-     //Alarm.alarmRepeat(dayOfWeeks[i],schedule[0][0],schedule[0][1],0,Silen);  // Monday to Friday every week 
-     //Alarm.alarmRepeat(dayOfWeeks[i],schedule[1][0],schedule[1][1],30,Silen2);  // Monday to Friday every week 
-  //  }
-  //}
 }
 
 #define isdigit(n) (n >= '0' && n <= '9')
@@ -506,6 +471,7 @@ void digitalClockDisplay()
   lcd.print(hour());
   printDigits(minute());
   printDigits(second());
+  printDate();
 }
 
 void printDigits(int digits)
@@ -515,6 +481,59 @@ void printDigits(int digits)
     lcd.print('0');
   lcd.print(digits);
 }
+
+void printDate(){
+  lcd.setCursor(0,1);
+  lcd.print(day());    
+  lcd.print("/");    
+  lcd.print(prettify(month()));    
+  lcd.print("/");    
+  lcd.print(year());    
+};
+
+char *prettify(int month){
+  char *result;
+  switch(month){
+    case 1:
+       result = "Jan";
+       break;
+    case 2:
+       result = "Feb";
+       break;
+    case 3:
+       result = "Mar";
+       break;
+    case 4:
+       result = "Apr";
+       break;
+    case 5:
+       result = "May";
+       break;
+    case 6:
+       result = "Jun";
+       break;
+    case 7:
+       result = "Jul";
+       break;
+    case 8:
+       result = "Aug";
+       break;
+    case 9:
+       result = "Sep";
+       break;
+    case 10:
+       result = "Oct";
+       break;
+    case 11:
+       result = "Nov";
+       break;
+    case 12:
+       result = "Dec";
+       break;
+    }
+   return result;
+}
+
 
 void Silen(){
   //digitalWrite(silenpin,HIGH); 
@@ -538,11 +557,6 @@ void SilenceHour(){
   Serial.println(F("jeopardy"));
   Serial.println(buffer);
   play_rtttl(buffer);
-  //  char buffer[430];
-//  strcpy_P(buffer, (char*)pgm_read_word(&jeopardy));
-//  play_rtttl(buffer);  
-//play_rtttl(jeopardy);
-//   play_rtttl(ateam);
 }
 
 void StartLesson(){ 
@@ -553,11 +567,6 @@ void StartLesson(){
   Serial.println(F("entertainer"));
   Serial.println(buffer);
   play_rtttl(buffer);    
-//  char buffer[430];
-//  strcpy_P(buffer, (char*)pgm_read_word(&entertainer));
-//  play_rtttl(buffer);  
-//  play_rtttl(entertainer);
-//   play_rtttl(ateam);
 }
 
 void BreakTime(){
@@ -568,11 +577,6 @@ void BreakTime(){
   Serial.println(F("indianna"));
   Serial.println(buffer);
   play_rtttl(buffer);    
-//  char buffer[430];
-//  strcpy_P(buffer, (char*)pgm_read_word(&indianna));
-//  play_rtttl(buffer);  
-//  play_rtttl(indianna);
-//   play_rtttl(ateam);
 }
 
 void BreakOver(){
@@ -583,11 +587,6 @@ void BreakOver(){
   Serial.println(F("ateam"));
   Serial.println(buffer);
   play_rtttl(buffer);    
-  //  char buffer[430];
-//  strcpy_P(buffer, (char*)pgm_read_word(&ateam));
-//  play_rtttl(buffer);  
-//  play_rtttl(ateam);
-//   play_rtttl(ateam);
 }
 
 void Closing(){
@@ -598,11 +597,6 @@ void Closing(){
   Serial.println(F("flintstones"));
   Serial.println(buffer);
   play_rtttl(buffer);    
-//  char buffer[430];
-//  strcpy_P(buffer, (char*)pgm_read_word(&flintstones));
-//  play_rtttl(buffer);  
-//  play_rtttl(flintstones);
-//   play_rtttl(ateam);
 }
 
 
@@ -862,14 +856,15 @@ void editClock(){
     EEPROM.write(addr,hr);
     addr++;
     EEPROM.write(addr,mint);
-    delay(1000);
+    lcd.clear();
+    lcd.setCursor(0,0);
+    lcd.print(F("Time uploaded!"));
+    delay(2000);
 
     software_Reset();
 
     //Never reached
     setTime(hr,mint,0,dy,mnth,yr);
-    disableAllAlarms();
-    enableAllAlarms();
     //alarmSetup();
     delay(1000);
     lcd.clear();
@@ -885,61 +880,6 @@ void editClock(){
    lcd.clear();
   }
   
-}
-
-void disableAllAlarms(){
-  Alarm.disable(mon0);
-  Alarm.disable(tue0);
-  Alarm.disable(wed0);
-  Alarm.disable(thu0);
-  Alarm.disable(fri0);
-  Alarm.disable(mon1);
-  Alarm.disable(tue1);
-  Alarm.disable(wed1);
-  Alarm.disable(thu1);
-  Alarm.disable(fri1);
-  Alarm.disable(mon2);
-  Alarm.disable(tue2);
-  Alarm.disable(wed2);
-  Alarm.disable(thu2);
-  Alarm.disable(mon2);
-  Alarm.disable(tue3);
-  Alarm.disable(wed3);
-  Alarm.disable(thu3);
-  Alarm.disable(fri3);
-  Alarm.disable(mon3);
-  Alarm.disable(tue4);
-  Alarm.disable(wed4);
-  Alarm.disable(thu4);
-  Alarm.disable(fri4);
-}
-
-void enableAllAlarms(){
-  Alarm.enable(mon0);
-  Alarm.enable(tue0);
-  Alarm.enable(wed0);
-  Alarm.enable(thu0);
-  Alarm.enable(fri0);
-  Alarm.enable(mon1);
-  Alarm.enable(tue1);
-  Alarm.enable(wed1);
-  Alarm.enable(thu1);
-  Alarm.enable(fri1);
-  Alarm.enable(mon2);
-  Alarm.enable(tue2);
-  Alarm.enable(wed2);
-  Alarm.enable(thu2);
-  Alarm.enable(mon2);
-  Alarm.enable(tue3);
-  Alarm.enable(wed3);
-  Alarm.enable(thu3);
-  Alarm.enable(fri3);
-  Alarm.enable(mon3);
-  Alarm.enable(tue4);
-  Alarm.enable(wed4);
-  Alarm.enable(thu4);
-  Alarm.enable(fri4);
-
 }
 
 
