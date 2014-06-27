@@ -27,6 +27,36 @@ void digitalClockDisplay();
 void mainMenu();
 void printDigits(int digits);
 void editClock();
+void alarmSetup();
+void disableAllAlarms();
+void enableAllAlarms();
+
+AlarmID_t mon0 = 0;
+AlarmID_t tue0 = 0;
+AlarmID_t wed0 = 0;
+AlarmID_t thu0 = 0;
+AlarmID_t fri0 = 0;
+AlarmID_t mon1 = 1;
+AlarmID_t tue1 = 1;
+AlarmID_t wed1 = 1;
+AlarmID_t thu1 = 1;
+AlarmID_t fri1 = 1;
+AlarmID_t mon2 = 2;
+AlarmID_t tue2 = 2;
+AlarmID_t wed2 = 2;
+AlarmID_t thu2 = 2;
+AlarmID_t fri2 = 2;
+AlarmID_t mon3 = 3;
+AlarmID_t tue3 = 3;
+AlarmID_t wed3 = 3;
+AlarmID_t thu3 = 3;
+AlarmID_t fri3 = 3;
+AlarmID_t mon4 = 4;
+AlarmID_t tue4 = 4;
+AlarmID_t wed4 = 4;
+AlarmID_t thu4 = 4;
+AlarmID_t fri4 = 4;
+
 // A fun sketch to demonstrate the use of the Tone library.
 
 // To mix the output of the signals to output to a small speaker (i.e. 8 Ohms or higher),
@@ -58,7 +88,7 @@ NOTE_C7, NOTE_CS7, NOTE_D7, NOTE_DS7, NOTE_E7, NOTE_F7, NOTE_FS7, NOTE_G7, NOTE_
 //
 //char *indianna = "Indiana:d=4,o=5,b=250:e,8p,8f,8g,8p,1c6,8p.,d,8p,8e,1f,p.,g,8p,8a,8b,8p,1f6,p,a,8p,8b,2c6,2d6,2e6,e,8p,8f,8g,8p,1c6,p,d6,8p,8e6,1f.6,g,8p,8g,e.6,8p,d6,8p,8g,e.6,8p,d6,8p,8g,f.6,8p,e6,8p,8d6,2c6";
 //char *entertainer = "Entertainer:d=4,o=5,b=140:8d,8d#,8e,c6,8e,c6,8e,2c.6,8c6,8d6,8d#6,8e6,8c6,8d6,e6,8b,d6,2c6,p,8d,8d#,8e,c6,8e,c6,8e,2c.6,8p,8a,8g,8f#,8a,8c6,e6,8d6,8c6,8a,2d6";
-//char *ateam = "A-Team:d=8,o=5,b=125:4d#6,a#,2d#6,16p,g#,4a#,4d#.,p,16g,16a#,d#6,a#,f6,2d#6,16p,c#.6,16c6,16a#,g#.,2a#";
+char *ateam = "A-Team:d=8,o=5,b=125:4d#6,a#,2d#6,16p,g#,4a#,4d#.,p,16g,16a#,d#6,a#,f6,2d#6,16p,c#.6,16c6,16a#,g#.,2a#";
 //char *flintstones = "Flinstones:d=4,o=5,b=40:32p,16f6,16a#,16a#6,32g6,16f6,16a#.,16f6,32d#6,32d6,32d6,32d#6,32f6,16a#,16c6,d6,16f6,16a#.,16a#6,32g6,16f6,16a#.,32f6,32f6,32d#6,32d6,32d6,32d#6,32f6,16a#,16c6,a#,16a6,16d.6,16a#6,32a6,32a6,32g6,32f#6,32a6,8g6,16g6,16c.6,32a6,32a6,32g6,32g6,32f6,32e6,32g6,8f6,16f6,16a#.,16a#6,32g6,16f6,16a#.,16f6,32d#6,32d6,32d6,32d#6,32f6,16a#,16c.6,32d6,32d#6,32f6,16a#,16c.6,32d6,32d#6,32f6,16a#6,16c7,8a#.6";
 //char *jeopardy = "Jeopardy:d=4,o=6,b=125:c,f,c,f5,c,f,2c,c,f,c,f,a.,8g,8f,8e,8d,8c#,c,f,c,f5,c,f,2c,f.,8d,c,a#5,a5,g5,f5,p,d#,g#,d#,g#5,d#,g#,2d#,d#,g#,d#,g#,c.7,8a#,8g#,8g,8f,8e,d#,g#,d#,g#5,d#,g#,2d#,g#.,8f,d#,c#,c,p,a#5,p,g#.5,d#,g#";
 //
@@ -130,52 +160,52 @@ void alarmSetup(){
 //       Alarm.alarmRepeat(dowThursday,schedule[i][0],schedule[i][1],10,SilenceHour);  // Monday to Friday every week
 //       Alarm.alarmRepeat(dowFriday,schedule[i][0],schedule[i][1],10,SilenceHour);  // Monday to Friday every week  
      
-       Alarm.alarmRepeat(dowMonday,7,15,10,SilenceHour);  // Monday to Friday every week
-       Alarm.alarmRepeat(dowTuesday,7,15,10,SilenceHour);  // Monday to Friday every week
-       Alarm.alarmRepeat(dowWednesday,7,15,10,SilenceHour);  // Monday to Friday every week
-       Alarm.alarmRepeat(dowThursday,7,15,10,SilenceHour);  // Monday to Friday every week
-       Alarm.alarmRepeat(dowFriday,7,15,10,SilenceHour);  // Monday to Friday every week  
+//       Alarm.alarmRepeat(dowMonday,7,15,10,SilenceHour);  // Monday to Friday every week
+//       Alarm.alarmRepeat(dowTuesday,7,15,10,SilenceHour);  // Monday to Friday every week
+//       Alarm.alarmRepeat(dowWednesday,7,15,10,SilenceHour);  // Monday to Friday every week
+//       Alarm.alarmRepeat(dowThursday,7,15,10,SilenceHour);  // Monday to Friday every week
+//       Alarm.alarmRepeat(dowFriday,7,15,10,SilenceHour);  // Monday to Friday every week  
 
-       Alarm.alarmRepeat(dowMonday,8,0,10,StartLesson);  // Monday to Friday every week
-       Alarm.alarmRepeat(dowTuesday,8,0,10,StartLesson);  // Monday to Friday every week
-       Alarm.alarmRepeat(dowWednesday,8,0,10,StartLesson);  // Monday to Friday every week
-       Alarm.alarmRepeat(dowThursday,8,0,10,StartLesson);  // Monday to Friday every week
-       Alarm.alarmRepeat(dowFriday,8,0,10,StartLesson);  // Monday to Friday every week
+       mon1 = Alarm.alarmRepeat(dowMonday,8,0,10,StartLesson);  // Monday to Friday every week
+       tue1 = Alarm.alarmRepeat(dowTuesday,8,0,10,StartLesson);  // Monday to Friday every week
+       wed1 = Alarm.alarmRepeat(dowWednesday,8,0,10,StartLesson);  // Monday to Friday every week
+       thu1= Alarm.alarmRepeat(dowThursday,8,0,10,StartLesson);  // Monday to Friday every week
+       fri1 = Alarm.alarmRepeat(dowFriday,8,0,10,StartLesson);  // Monday to Friday every week
 
-       Alarm.alarmRepeat(dowMonday,10,40,10,BreakTime);  // Monday to Friday every week
-       Alarm.alarmRepeat(dowTuesday,10,40,10,BreakTime);  // Monday to Friday every week
-       Alarm.alarmRepeat(dowWednesday,10,40,10,BreakTime);  // Monday to Friday every week
-       Alarm.alarmRepeat(dowThursday,10,40,10,BreakTime);  // Monday to Friday every week
-       Alarm.alarmRepeat(dowFriday,10,40,10,BreakTime);  // Monday to Friday every week
+       mon2 = Alarm.alarmRepeat(dowMonday,10,40,10,BreakTime);  // Monday to Friday every week
+       tue2 = Alarm.alarmRepeat(dowTuesday,10,40,10,BreakTime);  // Monday to Friday every week
+       wed2 = Alarm.alarmRepeat(dowWednesday,10,40,10,BreakTime);  // Monday to Friday every week
+       thu2 = Alarm.alarmRepeat(dowThursday,10,40,10,BreakTime);  // Monday to Friday every week
+       fri2 = Alarm.alarmRepeat(dowFriday,10,40,10,BreakTime);  // Monday to Friday every week
 
-       Alarm.alarmRepeat(dowMonday,11,20,10,BreakOver);  // Monday to Friday every week
-       Alarm.alarmRepeat(dowTuesday,11,20,10,BreakOver);  // Monday to Friday every week
-       Alarm.alarmRepeat(dowWednesday,11,20,10,BreakOver);  // Monday to Friday every week
-       Alarm.alarmRepeat(dowThursday,11,20,10,BreakOver);  // Monday to Friday every week
-       Alarm.alarmRepeat(dowFriday,11,20,10,BreakOver);  // Monday to Friday every week
+       mon3 = Alarm.alarmRepeat(dowMonday,11,20,10,BreakOver);  // Monday to Friday every week
+       tue3 = Alarm.alarmRepeat(dowTuesday,11,20,10,BreakOver);  // Monday to Friday every week
+       wed3 = Alarm.alarmRepeat(dowWednesday,11,20,10,BreakOver);  // Monday to Friday every week
+       thu3 = Alarm.alarmRepeat(dowThursday,11,20,10,BreakOver);  // Monday to Friday every week
+       fri3 = Alarm.alarmRepeat(dowFriday,11,20,10,BreakOver);  // Monday to Friday every week
 
-       Alarm.alarmRepeat(dowMonday,14,30,10,Closing);  // Monday to Friday every week
-       Alarm.alarmRepeat(dowTuesday,14,30,10,Closing);  // Monday to Friday every week
-       Alarm.alarmRepeat(dowWednesday,14,30,10,Closing);  // Monday to Friday every week
-       Alarm.alarmRepeat(dowThursday,14,30,10,Closing);  // Monday to Friday every week
-       Alarm.alarmRepeat(dowFriday,14,30,10,Closing);  // Monday to Friday every week
+       mon4 = Alarm.alarmRepeat(dowMonday,14,30,10,Closing);  // Monday to Friday every week
+       tue4 = Alarm.alarmRepeat(dowTuesday,14,30,10,Closing);  // Monday to Friday every week
+       wed4 = Alarm.alarmRepeat(dowWednesday,14,30,10,Closing);  // Monday to Friday every week
+       thu4 = Alarm.alarmRepeat(dowThursday,14,30,10,Closing);  // Monday to Friday every week
+       fri4 = Alarm.alarmRepeat(dowFriday,14,30,10,Closing);  // Monday to Friday every week
  //    }
 }
 
-prog_char string_0[] PROGMEM = "Jeopardy:d=4,o=6,b=125:c,f,c,f5,c,f,2c,c,f,c,f,a.,8g,8f,8e,8d,8c#,c,f,c,f5,c,f,2c,f.,8d,c,a#5,a5,g5,f5,p,d#,g#,d#,g#5,d#,g#,2d#,d#,g#,d#,g#,c.7,8a#,8g#,8g,8f,8e,d#,g#,d#,g#5,d#,g#,2d#,g#.,8f,d#,c#,c,p,a#5,p,g#.5,d#,g#";
-prog_char string_1[] PROGMEM = "Entertainer:d=4,o=5,b=140:8d,8d#,8e,c6,8e,c6,8e,2c.6,8c6,8d6,8d#6,8e6,8c6,8d6,e6,8b,d6,2c6,p,8d,8d#,8e,c6,8e,c6,8e,2c.6,8p,8a,8g,8f#,8a,8c6,e6,8d6,8c6,8a,2d6";
-prog_char string_2[] PROGMEM = "Indiana:d=4,o=5,b=250:e,8p,8f,8g,8p,1c6,8p.,d,8p,8e,1f,p.,g,8p,8a,8b,8p,1f6,p,a,8p,8b,2c6,2d6,2e6,e,8p,8f,8g,8p,1c6,p,d6,8p,8e6,1f.6,g,8p,8g,e.6,8p,d6,8p,8g,e.6,8p,d6,8p,8g,f.6,8p,e6,8p,8d6,2c6";
-prog_char string_3[] PROGMEM = "A-Team:d=8,o=5,b=125:4d#6,a#,2d#6,16p,g#,4a#,4d#.,p,16g,16a#,d#6,a#,f6,2d#6,16p,c#.6,16c6,16a#,g#.,2a#";
-prog_char string_4[] PROGMEM = "Flinstones:d=4,o=5,b=40:32p,16f6,16a#,16a#6,32g6,16f6,16a#.,16f6,32d#6,32d6,32d6,32d#6,32f6,16a#,16c6,d6,16f6,16a#.,16a#6,32g6,16f6,16a#.,32f6,32f6,32d#6,32d6,32d6,32d#6,32f6,16a#,16c6,a#,16a6,16d.6,16a#6,32a6,32a6,32g6,32f#6,32a6,8g6,16g6,16c.6,32a6,32a6,32g6,32g6,32f6,32e6,32g6,8f6,16f6,16a#.,16a#6,32g6,16f6,16a#.,16f6,32d#6,32d6,32d6,32d#6,32f6,16a#,16c.6,32d6,32d#6,32f6,16a#,16c.6,32d6,32d#6,32f6,16a#6,16c7,8a#.6";
-// Then set up a table to refer to your strings.
-PROGMEM const char *string_table[] = 	   // change "string_table" name to suit
-{   
-  string_0,
-  string_1,
-  string_2,
-  string_3,
-  string_4 };
-char buffer[430];    // make sure this is large enough for the largest string it must hold
+//prog_char string_0[] PROGMEM = "Jeopardy:d=4,o=6,b=125:c,f,c,f5,c,f,2c,c,f,c,f,a.,8g,8f,8e,8d,8c#,c,f,c,f5,c,f,2c,f.,8d,c,a#5,a5,g5,f5,p,d#,g#,d#,g#5,d#,g#,2d#,d#,g#,d#,g#,c.7,8a#,8g#,8g,8f,8e,d#,g#,d#,g#5,d#,g#,2d#,g#.,8f,d#,c#,c,p,a#5,p,g#.5,d#,g#";
+//prog_char string_1[] PROGMEM = "Entertainer:d=4,o=5,b=140:8d,8d#,8e,c6,8e,c6,8e,2c.6,8c6,8d6,8d#6,8e6,8c6,8d6,e6,8b,d6,2c6,p,8d,8d#,8e,c6,8e,c6,8e,2c.6,8p,8a,8g,8f#,8a,8c6,e6,8d6,8c6,8a,2d6";
+//prog_char string_2[] PROGMEM = "Indiana:d=4,o=5,b=250:e,8p,8f,8g,8p,1c6,8p.,d,8p,8e,1f,p.,g,8p,8a,8b,8p,1f6,p,a,8p,8b,2c6,2d6,2e6,e,8p,8f,8g,8p,1c6,p,d6,8p,8e6,1f.6,g,8p,8g,e.6,8p,d6,8p,8g,e.6,8p,d6,8p,8g,f.6,8p,e6,8p,8d6,2c6";
+//prog_char string_3[] PROGMEM = "A-Team:d=8,o=5,b=125:4d#6,a#,2d#6,16p,g#,4a#,4d#.,p,16g,16a#,d#6,a#,f6,2d#6,16p,c#.6,16c6,16a#,g#.,2a#";
+//prog_char string_4[] PROGMEM = "Flinstones:d=4,o=5,b=40:32p,16f6,16a#,16a#6,32g6,16f6,16a#.,16f6,32d#6,32d6,32d6,32d#6,32f6,16a#,16c6,d6,16f6,16a#.,16a#6,32g6,16f6,16a#.,32f6,32f6,32d#6,32d6,32d6,32d#6,32f6,16a#,16c6,a#,16a6,16d.6,16a#6,32a6,32a6,32g6,32f#6,32a6,8g6,16g6,16c.6,32a6,32a6,32g6,32g6,32f6,32e6,32g6,8f6,16f6,16a#.,16a#6,32g6,16f6,16a#.,16f6,32d#6,32d6,32d6,32d#6,32f6,16a#,16c.6,32d6,32d#6,32f6,16a#,16c.6,32d6,32d#6,32f6,16a#6,16c7,8a#.6";
+//// Then set up a table to refer to your strings.
+//PROGMEM const char *string_table[] = 	   // change "string_table" name to suit
+//{   
+//  string_0,
+//  string_1,
+//  string_2,
+//  string_3,
+//  string_4 };
+//char buffer[430];    // make sure this is large enough for the largest string it must hold
 
 void setup() {
   Serial.begin(9600);
@@ -185,8 +215,8 @@ void setup() {
   lcd.begin(16, 2);
   //lcd.print("Push the number");
   
-  //setTime(10,40,5,3,1,11); // set time to Saturday 8:29:00am Jan 1 2011  
-  setTime(10,40,5,23,6,14); // set time to Saturday 8:29:00am Jan 1 2011  
+  setTime(10,40,5,3,1,11); // set time to Saturday 8:29:00am Jan 1 2011  
+  //setTime(10,40,5,23,6,14); // set time to Saturday 8:29:00am Jan 1 2011  
   //Calendar are included in the library, 
   // so that u don't have to set the day(ex.Saturday) manually, yay!
   //create the alarms 
@@ -198,7 +228,13 @@ void setup() {
   //Alarm.alarmRepeat(dowSaturday,8,30,30,WeeklyAlarm);  // 8:30:30 every Saturday 
   //Alarm.timerRepeat(15, Repeats);            // timer for every 15 seconds    
   //Alarm.timerOnce(10, OnceOnly);             // called once after 10 seconds 
-  alarmSetup();
+  //alarmSetup();
+//   Alarm.alarmRepeat(dowMonday,7,15,10,SilenceHour);  // Monday to Friday every week
+//   Alarm.alarmRepeat(dowTuesday,7,15,10,SilenceHour);  // Monday to Friday every week
+//   Alarm.alarmRepeat(dowWednesday,7,15,10,SilenceHour);  // Monday to Friday every week
+//   Alarm.alarmRepeat(dowThursday,7,15,10,SilenceHour);  // Monday to Friday every week
+//   Alarm.alarmRepeat(dowFriday,7,15,10,SilenceHour);  // Monday to Friday every week  
+   alarmSetup();
   
   //for (int i = 0; i < 5; i++){
   //  for(int j =0; j < SCHEDULE_SIZE; j++){  
@@ -422,58 +458,63 @@ void Silen2(){
 }
 
 void SilenceHour(){
-  strcpy_P(buffer, (char*)pgm_read_word(&(string_table[0])));
-  Serial.println(F("jeopardy"));
-  Serial.println(buffer);
-  play_rtttl(buffer);
+//  strcpy_P(buffer, (char*)pgm_read_word(&(string_table[0])));
+//  Serial.println(F("jeopardy"));
+//  Serial.println(buffer);
+//  play_rtttl(buffer);
   //  char buffer[430];
 //  strcpy_P(buffer, (char*)pgm_read_word(&jeopardy));
 //  play_rtttl(buffer);  
 //play_rtttl(jeopardy);
+   play_rtttl(ateam);
 }
 
 void StartLesson(){ 
-  strcpy_P(buffer, (char*)pgm_read_word(&(string_table[1])));
-  Serial.println(F("entertainer"));
-  Serial.println(buffer);
-  play_rtttl(buffer);    
+//  strcpy_P(buffer, (char*)pgm_read_word(&(string_table[1])));
+//  Serial.println(F("entertainer"));
+//  Serial.println(buffer);
+//  play_rtttl(buffer);    
 //  char buffer[430];
 //  strcpy_P(buffer, (char*)pgm_read_word(&entertainer));
 //  play_rtttl(buffer);  
 //  play_rtttl(entertainer);
+   play_rtttl(ateam);
 }
 
 void BreakTime(){
-  strcpy_P(buffer, (char*)pgm_read_word(&(string_table[2])));
-  Serial.println(F("indianna"));
-  Serial.println(buffer);
-  play_rtttl(buffer);    
+//  strcpy_P(buffer, (char*)pgm_read_word(&(string_table[2])));
+//  Serial.println(F("indianna"));
+//  Serial.println(buffer);
+//  play_rtttl(buffer);    
 //  char buffer[430];
 //  strcpy_P(buffer, (char*)pgm_read_word(&indianna));
 //  play_rtttl(buffer);  
 //  play_rtttl(indianna);
+   play_rtttl(ateam);
 }
 
 void BreakOver(){
-  strcpy_P(buffer, (char*)pgm_read_word(&(string_table[3])));
-  Serial.println(F("ateam"));
-  Serial.println(buffer);
-  play_rtttl(buffer);    
+//  strcpy_P(buffer, (char*)pgm_read_word(&(string_table[3])));
+//  Serial.println(F("ateam"));
+//  Serial.println(buffer);
+//  play_rtttl(buffer);    
   //  char buffer[430];
 //  strcpy_P(buffer, (char*)pgm_read_word(&ateam));
 //  play_rtttl(buffer);  
 //  play_rtttl(ateam);
+   play_rtttl(ateam);
 }
 
 void Closing(){
-  strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
-  Serial.println(F("flintstones"));
-  Serial.println(buffer);
-  play_rtttl(buffer);    
+//  strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
+//  Serial.println(F("flintstones"));
+//  Serial.println(buffer);
+//  play_rtttl(buffer);    
 //  char buffer[430];
 //  strcpy_P(buffer, (char*)pgm_read_word(&flintstones));
 //  play_rtttl(buffer);  
 //  play_rtttl(flintstones);
+   play_rtttl(ateam);
 }
 
 
@@ -720,9 +761,11 @@ void editClock(){
     Serial.println(dy);
     Serial.println(mnth);
     Serial.println(yr);  
-    
     setTime(hr,mint,0,dy,mnth,yr);
-    delay(500);
+    disableAllAlarms();
+    enableAllAlarms();
+    //alarmSetup();
+    delay(1000);
     lcd.clear();
     lcd.setCursor(0,0);
     lcd.print(F("Time uploaded!"));
@@ -738,3 +781,46 @@ void editClock(){
   
 }
 
+void disableAllAlarms(){
+  Alarm.disable(mon1);
+  Alarm.disable(tue1);
+  Alarm.disable(wed1);
+  Alarm.disable(thu1);
+  Alarm.disable(fri1);
+  Alarm.disable(mon2);
+  Alarm.disable(tue2);
+  Alarm.disable(wed2);
+  Alarm.disable(thu2);
+  Alarm.disable(mon2);
+  Alarm.disable(tue3);
+  Alarm.disable(wed3);
+  Alarm.disable(thu3);
+  Alarm.disable(fri3);
+  Alarm.disable(mon3);
+  Alarm.disable(tue4);
+  Alarm.disable(wed4);
+  Alarm.disable(thu4);
+  Alarm.disable(fri4);
+}
+
+void enableAllAlarms(){
+  Alarm.enable(mon1);
+  Alarm.enable(tue1);
+  Alarm.enable(wed1);
+  Alarm.enable(thu1);
+  Alarm.enable(fri1);
+  Alarm.enable(mon2);
+  Alarm.enable(tue2);
+  Alarm.enable(wed2);
+  Alarm.enable(thu2);
+  Alarm.enable(mon2);
+  Alarm.enable(tue3);
+  Alarm.enable(wed3);
+  Alarm.enable(thu3);
+  Alarm.enable(fri3);
+  Alarm.enable(mon3);
+  Alarm.enable(tue4);
+  Alarm.enable(wed4);
+  Alarm.enable(thu4);
+  Alarm.enable(fri4);
+}
