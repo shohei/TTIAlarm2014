@@ -1,5 +1,5 @@
 /*
- * LCD RS pin to digital pin 12
+* LCD RS pin to digital pin 12
  * LCD Enable pin to digital pin 11
  * LCD D4 pin to digital pin 5
  * LCD D5 pin to digital pin 4
@@ -34,7 +34,13 @@ void software_Reset();
 boolean readEEPROM();
 void printDate();
 char *prettify(int month);
+void PlayMP3();
 
+AlarmID_t mon00 = 0;
+AlarmID_t tue00 = 0;
+AlarmID_t wed00 = 0;
+AlarmID_t thu00 = 0;
+AlarmID_t fri00 = 0;
 AlarmID_t mon0 = 0;
 AlarmID_t tue0 = 0;
 AlarmID_t wed0 = 0;
@@ -186,6 +192,12 @@ void dumpID(){
 
 
 void alarmSetup(){
+       mon0 = Alarm.alarmRepeat(dowMonday,7,10,10,PlayMP3);  // Monday to Friday every week
+       tue0 = Alarm.alarmRepeat(dowTuesday,7,10,10,PlayMP3);  // Monday to Friday every week
+       wed0 = Alarm.alarmRepeat(dowWednesday,7,10,10,PlayMP3);  // Monday to Friday every week
+       thu0 = Alarm.alarmRepeat(dowThursday,7,10,10,PlayMP3);  // Monday to Friday every week
+       fri0 = Alarm.alarmRepeat(dowFriday,7,10,10,PlayMP3);  // Monday to Friday every week  
+
        mon0 = Alarm.alarmRepeat(dowMonday,7,15,10,SilenceHour);  // Monday to Friday every week
        tue0 = Alarm.alarmRepeat(dowTuesday,7,15,10,SilenceHour);  // Monday to Friday every week
        wed0 = Alarm.alarmRepeat(dowWednesday,7,15,10,SilenceHour);  // Monday to Friday every week
@@ -262,6 +274,7 @@ void setup() {
   //Serial.begin(9600);
   lcd.begin(16, 2);
   //lcd.print("Push the number");
+  pinMode(A2,OUTPUT);
   
   readResult = readEEPROM();
   if(readResult){
@@ -551,12 +564,23 @@ void Silen2(){
   //play_rtttl(song2);
 }
 
+void PlayMP3(){
+  digitalWrite(A2,HIGH);
+  uint8_t DELAY_TIME = 60; //60 seconds: 1min. delay, 300 seconds = 5min.
+  for(int i=0;i<DELAY_TIME;i++){
+    Alarm.delay(1000);
+  }
+  digitalWrite(A2,LOW);
+}
+
 void SilenceHour(){
   uint8_t id = Alarm.getTriggeredAlarmId();
   strcpy_P(buffer, (char*)pgm_read_word(&(string_table[0])));
   Serial.println(F("jeopardy"));
   Serial.println(buffer);
+  //digitalWrite(A2,HIGH);
   play_rtttl(buffer);
+  //digitalWrite(A2,LOW);
 }
 
 void StartLesson(){ 
@@ -566,7 +590,9 @@ void StartLesson(){
   strcpy_P(buffer, (char*)pgm_read_word(&(string_table[1])));
   Serial.println(F("entertainer"));
   Serial.println(buffer);
-  play_rtttl(buffer);    
+  //digitalWrite(A2,HIGH);
+  play_rtttl(buffer);
+  //digitalWrite(A2,LOW);
 }
 
 void BreakTime(){
@@ -576,7 +602,9 @@ void BreakTime(){
   strcpy_P(buffer, (char*)pgm_read_word(&(string_table[2])));
   Serial.println(F("indianna"));
   Serial.println(buffer);
-  play_rtttl(buffer);    
+  //digitalWrite(A2,HIGH);
+  play_rtttl(buffer);
+  //digitalWrite(A2,LOW);
 }
 
 void BreakOver(){
@@ -586,7 +614,9 @@ void BreakOver(){
   strcpy_P(buffer, (char*)pgm_read_word(&(string_table[3])));
   Serial.println(F("ateam"));
   Serial.println(buffer);
-  play_rtttl(buffer);    
+  //digitalWrite(A2,HIGH);
+  play_rtttl(buffer);
+  //digitalWrite(A2,LOW);
 }
 
 void Closing(){
@@ -596,7 +626,9 @@ void Closing(){
   strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
   Serial.println(F("flintstones"));
   Serial.println(buffer);
-  play_rtttl(buffer);    
+  //digitalWrite(A2,HIGH);
+  play_rtttl(buffer);
+  //digitalWrite(A2,LOW);
 }
 
 
