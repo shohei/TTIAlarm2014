@@ -16,6 +16,7 @@
 #include <TimeAlarms.h>
 #include <Keypad.h>
 #include <avr/pgmspace.h>
+#include <EEPROM.h>
 
 //function prototype
 void SilenceHour();
@@ -30,6 +31,9 @@ void editClock();
 void alarmSetup();
 void disableAllAlarms();
 void enableAllAlarms();
+void dumpID();
+void software_Reset();
+boolean readEEPROM();
 
 AlarmID_t mon0 = 0;
 AlarmID_t tue0 = 0;
@@ -88,7 +92,7 @@ NOTE_C7, NOTE_CS7, NOTE_D7, NOTE_DS7, NOTE_E7, NOTE_F7, NOTE_FS7, NOTE_G7, NOTE_
 //
 //char *indianna = "Indiana:d=4,o=5,b=250:e,8p,8f,8g,8p,1c6,8p.,d,8p,8e,1f,p.,g,8p,8a,8b,8p,1f6,p,a,8p,8b,2c6,2d6,2e6,e,8p,8f,8g,8p,1c6,p,d6,8p,8e6,1f.6,g,8p,8g,e.6,8p,d6,8p,8g,e.6,8p,d6,8p,8g,f.6,8p,e6,8p,8d6,2c6";
 //char *entertainer = "Entertainer:d=4,o=5,b=140:8d,8d#,8e,c6,8e,c6,8e,2c.6,8c6,8d6,8d#6,8e6,8c6,8d6,e6,8b,d6,2c6,p,8d,8d#,8e,c6,8e,c6,8e,2c.6,8p,8a,8g,8f#,8a,8c6,e6,8d6,8c6,8a,2d6";
-char *ateam = "A-Team:d=8,o=5,b=125:4d#6,a#,2d#6,16p,g#,4a#,4d#.,p,16g,16a#,d#6,a#,f6,2d#6,16p,c#.6,16c6,16a#,g#.,2a#";
+//char *ateam = "A-Team:d=8,o=5,b=125:4d#6,a#,2d#6,16p,g#,4a#,4d#.,p,16g,16a#,d#6,a#,f6,2d#6,16p,c#.6,16c6,16a#,g#.,2a#";
 //char *flintstones = "Flinstones:d=4,o=5,b=40:32p,16f6,16a#,16a#6,32g6,16f6,16a#.,16f6,32d#6,32d6,32d6,32d#6,32f6,16a#,16c6,d6,16f6,16a#.,16a#6,32g6,16f6,16a#.,32f6,32f6,32d#6,32d6,32d6,32d#6,32f6,16a#,16c6,a#,16a6,16d.6,16a#6,32a6,32a6,32g6,32f#6,32a6,8g6,16g6,16c.6,32a6,32a6,32g6,32g6,32f6,32e6,32g6,8f6,16f6,16a#.,16a#6,32g6,16f6,16a#.,16f6,32d#6,32d6,32d6,32d#6,32f6,16a#,16c.6,32d6,32d#6,32f6,16a#,16c.6,32d6,32d#6,32f6,16a#6,16c7,8a#.6";
 //char *jeopardy = "Jeopardy:d=4,o=6,b=125:c,f,c,f5,c,f,2c,c,f,c,f,a.,8g,8f,8e,8d,8c#,c,f,c,f5,c,f,2c,f.,8d,c,a#5,a5,g5,f5,p,d#,g#,d#,g#5,d#,g#,2d#,d#,g#,d#,g#,c.7,8a#,8g#,8g,8f,8e,d#,g#,d#,g#5,d#,g#,2d#,g#.,8f,d#,c#,c,p,a#5,p,g#.5,d#,g#";
 //
@@ -152,6 +156,35 @@ byte colPins[COLS] = {6, 5, 4}; //connect to the column pinouts of the keypad
 
 Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
 
+void dumpID(){
+  Serial.println(mon0);
+  Serial.println(tue0);
+  Serial.println(wed0);
+  Serial.println(thu0);
+  Serial.println(fri0);
+  Serial.println(mon1);
+  Serial.println(tue1);
+  Serial.println(wed1);
+  Serial.println(thu1);
+  Serial.println(fri1);
+  Serial.println(mon2);
+  Serial.println(tue2);
+  Serial.println(wed2);
+  Serial.println(thu2);
+  Serial.println(fri2);
+  Serial.println(mon3);
+  Serial.println(tue3);
+  Serial.println(wed3);
+  Serial.println(thu3);
+  Serial.println(fri3);
+  Serial.println(mon4);
+  Serial.println(tue4);
+  Serial.println(wed4);
+  Serial.println(thu4);
+  Serial.println(fri4);
+}
+
+
 void alarmSetup(){
 //     for(int i=0;i<SCHEDULE_SIZE;i++){
 //       Alarm.alarmRepeat(dowMonday,schedule[i][0],schedule[i][1],10,SilenceHour);  // Monday to Friday every week
@@ -160,11 +193,11 @@ void alarmSetup(){
 //       Alarm.alarmRepeat(dowThursday,schedule[i][0],schedule[i][1],10,SilenceHour);  // Monday to Friday every week
 //       Alarm.alarmRepeat(dowFriday,schedule[i][0],schedule[i][1],10,SilenceHour);  // Monday to Friday every week  
      
-       //mon0 = Alarm.alarmRepeat(dowMonday,7,15,10,SilenceHour);  // Monday to Friday every week
-       //tue0 = Alarm.alarmRepeat(dowTuesday,7,15,10,SilenceHour);  // Monday to Friday every week
-       //wed0 = Alarm.alarmRepeat(dowWednesday,7,15,10,SilenceHour);  // Monday to Friday every week
-       //thu0 = Alarm.alarmRepeat(dowThursday,7,15,10,SilenceHour);  // Monday to Friday every week
-       //fri0 = Alarm.alarmRepeat(dowFriday,7,15,10,SilenceHour);  // Monday to Friday every week  
+       mon0 = Alarm.alarmRepeat(dowMonday,7,15,10,SilenceHour);  // Monday to Friday every week
+       tue0 = Alarm.alarmRepeat(dowTuesday,7,15,10,SilenceHour);  // Monday to Friday every week
+       wed0 = Alarm.alarmRepeat(dowWednesday,7,15,10,SilenceHour);  // Monday to Friday every week
+       thu0 = Alarm.alarmRepeat(dowThursday,7,15,10,SilenceHour);  // Monday to Friday every week
+       fri0 = Alarm.alarmRepeat(dowFriday,7,15,10,SilenceHour);  // Monday to Friday every week  
 
        mon1 = Alarm.alarmRepeat(dowMonday,8,0,10,StartLesson);  // Monday to Friday every week
        tue1 = Alarm.alarmRepeat(dowTuesday,8,0,10,StartLesson);  // Monday to Friday every week
@@ -207,6 +240,28 @@ PROGMEM const char *string_table[] = 	   // change "string_table" name to suit
   string_4 };
 char buffer[430];    // make sure this is large enough for the largest string it must hold
 
+uint8_t addr = 0;
+byte value;
+byte time_array[6];//Success code, Year, Month, Day, Hour, Minute
+
+boolean readEEPROM(){
+  Serial.println("reading EEPROM");
+  for(int i=0;i<6;i++){
+    value = EEPROM.read(addr);
+    Serial.println(value);
+    time_array[i] = value;
+    addr++;
+  }
+  if(time_array[0] == 100){
+    //this is right data
+    return true; 
+  }
+  else{
+    return false;
+  }
+}
+
+boolean readResult;
 void setup() {
   Serial.begin(9600);
   tone1.begin(13);
@@ -215,7 +270,26 @@ void setup() {
   lcd.begin(16, 2);
   //lcd.print("Push the number");
   
-  setTime(10,40,5,3,1,11); // set time to Saturday 8:29:00am Jan 1 2011  
+  readResult = readEEPROM();
+  if(readResult){
+    Serial.println("Read success");
+    Serial.print("Hour: ");
+    Serial.println(time_array[4]);
+    Serial.print("Minute: ");
+    Serial.println(time_array[5]);
+    Serial.print("Day: ");
+    Serial.println(time_array[3]);
+    Serial.print("Month: ");
+    Serial.println(time_array[2]);
+    Serial.print("Year: ");
+    Serial.println(time_array[1]);
+
+    setTime(time_array[4],time_array[5],0,time_array[3],time_array[2],time_array[1]);
+  } else {
+    //in case no data in EEPROM
+    Serial.println("Read failed");
+    setTime(10,40,5,3,1,11); // set time to Saturday 8:29:00am Jan 1 2011  
+  }
   //setTime(10,40,5,23,6,14); // set time to Saturday 8:29:00am Jan 1 2011  
   //Calendar are included in the library, 
   // so that u don't have to set the day(ex.Saturday) manually, yay!
@@ -235,6 +309,7 @@ void setup() {
 //   Alarm.alarmRepeat(dowThursday,7,15,10,SilenceHour);  // Monday to Friday every week
 //   Alarm.alarmRepeat(dowFriday,7,15,10,SilenceHour);  // Monday to Friday every week  
    alarmSetup();
+   dumpID();
   
   //for (int i = 0; i < 5; i++){
   //  for(int j =0; j < SCHEDULE_SIZE; j++){  
@@ -403,14 +478,14 @@ void play_rtttl(char *p)
 //      Serial.print(") ");
 //      Serial.println(duration, 10);
       tone1.play(notes[(scale - 4) * 12 + note]);
-      Alarm.delay(duration);
+      delay(duration);
       tone1.stop();
     }
     else
     {
 //      Serial.print("Pausing: ");
 //      Serial.println(duration, 10);
-      Alarm.delay(duration);
+      delay(duration);
     }
   }
 }
@@ -458,6 +533,7 @@ void Silen2(){
 }
 
 void SilenceHour(){
+  uint8_t id = Alarm.getTriggeredAlarmId();
   strcpy_P(buffer, (char*)pgm_read_word(&(string_table[0])));
   Serial.println(F("jeopardy"));
   Serial.println(buffer);
@@ -470,6 +546,9 @@ void SilenceHour(){
 }
 
 void StartLesson(){ 
+  uint8_t id = Alarm.getTriggeredAlarmId();
+  Serial.println(id);
+  Serial.println(F("was triggered"));
   strcpy_P(buffer, (char*)pgm_read_word(&(string_table[1])));
   Serial.println(F("entertainer"));
   Serial.println(buffer);
@@ -482,6 +561,9 @@ void StartLesson(){
 }
 
 void BreakTime(){
+  uint8_t id = Alarm.getTriggeredAlarmId();
+  Serial.println(id);
+  Serial.println(F("was triggered"));
   strcpy_P(buffer, (char*)pgm_read_word(&(string_table[2])));
   Serial.println(F("indianna"));
   Serial.println(buffer);
@@ -494,6 +576,9 @@ void BreakTime(){
 }
 
 void BreakOver(){
+  uint8_t id = Alarm.getTriggeredAlarmId();  
+  Serial.println(id);
+  Serial.println(F("was triggered"));
   strcpy_P(buffer, (char*)pgm_read_word(&(string_table[3])));
   Serial.println(F("ateam"));
   Serial.println(buffer);
@@ -506,6 +591,9 @@ void BreakOver(){
 }
 
 void Closing(){
+  uint8_t id = Alarm.getTriggeredAlarmId();  
+  Serial.println(id);
+  Serial.println(F("was triggered"));
   strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
   Serial.println(F("flintstones"));
   Serial.println(buffer);
@@ -761,6 +849,24 @@ void editClock(){
     Serial.println(dy);
     Serial.println(mnth);
     Serial.println(yr);  
+
+    addr = 0;
+    EEPROM.write(addr,100);//success code
+    addr++;
+    EEPROM.write(addr,yr);
+    addr++;
+    EEPROM.write(addr,mnth);
+    addr++;
+    EEPROM.write(addr,dy);
+    addr++;
+    EEPROM.write(addr,hr);
+    addr++;
+    EEPROM.write(addr,mint);
+    delay(1000);
+
+    software_Reset();
+
+    //Never reached
     setTime(hr,mint,0,dy,mnth,yr);
     disableAllAlarms();
     enableAllAlarms();
@@ -782,11 +888,11 @@ void editClock(){
 }
 
 void disableAllAlarms(){
-//  Alarm.disable(mon0);
-//  Alarm.disable(tue0);
-//  Alarm.disable(wed0);
-//  Alarm.disable(thu0);
-//  Alarm.disable(fri0);
+  Alarm.disable(mon0);
+  Alarm.disable(tue0);
+  Alarm.disable(wed0);
+  Alarm.disable(thu0);
+  Alarm.disable(fri0);
   Alarm.disable(mon1);
   Alarm.disable(tue1);
   Alarm.disable(wed1);
@@ -809,11 +915,11 @@ void disableAllAlarms(){
 }
 
 void enableAllAlarms(){
-//  Alarm.enable(mon0);
-//  Alarm.enable(tue0);
-//  Alarm.enable(wed0);
-//  Alarm.enable(thu0);
-//  Alarm.enable(fri0);
+  Alarm.enable(mon0);
+  Alarm.enable(tue0);
+  Alarm.enable(wed0);
+  Alarm.enable(thu0);
+  Alarm.enable(fri0);
   Alarm.enable(mon1);
   Alarm.enable(tue1);
   Alarm.enable(wed1);
@@ -833,4 +939,11 @@ void enableAllAlarms(){
   Alarm.enable(wed4);
   Alarm.enable(thu4);
   Alarm.enable(fri4);
+
 }
+
+
+void software_Reset() // Restarts program from beginning but does not reset the peripherals and registers
+{
+    asm volatile ("  jmp 0");  
+}  
