@@ -18,11 +18,11 @@
 #include <avr/pgmspace.h>
 
 //function prototype
+void SilenceHour();
 void StartLesson();
 void BreakTime();
 void BreakOver();
 void Closing();
-void SilenceHour();
 void digitalClockDisplay();
 void mainMenu();
 void printDigits(int digits);
@@ -36,26 +36,26 @@ AlarmID_t tue0 = 0;
 AlarmID_t wed0 = 0;
 AlarmID_t thu0 = 0;
 AlarmID_t fri0 = 0;
-AlarmID_t mon1 = 1;
-AlarmID_t tue1 = 1;
-AlarmID_t wed1 = 1;
-AlarmID_t thu1 = 1;
-AlarmID_t fri1 = 1;
-AlarmID_t mon2 = 2;
-AlarmID_t tue2 = 2;
-AlarmID_t wed2 = 2;
-AlarmID_t thu2 = 2;
-AlarmID_t fri2 = 2;
-AlarmID_t mon3 = 3;
-AlarmID_t tue3 = 3;
-AlarmID_t wed3 = 3;
-AlarmID_t thu3 = 3;
-AlarmID_t fri3 = 3;
-AlarmID_t mon4 = 4;
-AlarmID_t tue4 = 4;
-AlarmID_t wed4 = 4;
-AlarmID_t thu4 = 4;
-AlarmID_t fri4 = 4;
+AlarmID_t mon1 = 0;
+AlarmID_t tue1 = 0;
+AlarmID_t wed1 = 0;
+AlarmID_t thu1 = 0;
+AlarmID_t fri1 = 0;
+AlarmID_t mon2 = 0;
+AlarmID_t tue2 = 0;
+AlarmID_t wed2 = 0;
+AlarmID_t thu2 = 0;
+AlarmID_t fri2 = 0;
+AlarmID_t mon3 = 0;
+AlarmID_t tue3 = 0;
+AlarmID_t wed3 = 0;
+AlarmID_t thu3 = 0;
+AlarmID_t fri3 = 0;
+AlarmID_t mon4 = 0;
+AlarmID_t tue4 = 0;
+AlarmID_t wed4 = 0;
+AlarmID_t thu4 = 0;
+AlarmID_t fri4 = 0;
 
 // A fun sketch to demonstrate the use of the Tone library.
 
@@ -160,11 +160,11 @@ void alarmSetup(){
 //       Alarm.alarmRepeat(dowThursday,schedule[i][0],schedule[i][1],10,SilenceHour);  // Monday to Friday every week
 //       Alarm.alarmRepeat(dowFriday,schedule[i][0],schedule[i][1],10,SilenceHour);  // Monday to Friday every week  
      
-//       Alarm.alarmRepeat(dowMonday,7,15,10,SilenceHour);  // Monday to Friday every week
-//       Alarm.alarmRepeat(dowTuesday,7,15,10,SilenceHour);  // Monday to Friday every week
-//       Alarm.alarmRepeat(dowWednesday,7,15,10,SilenceHour);  // Monday to Friday every week
-//       Alarm.alarmRepeat(dowThursday,7,15,10,SilenceHour);  // Monday to Friday every week
-//       Alarm.alarmRepeat(dowFriday,7,15,10,SilenceHour);  // Monday to Friday every week  
+       //mon0 = Alarm.alarmRepeat(dowMonday,7,15,10,SilenceHour);  // Monday to Friday every week
+       //tue0 = Alarm.alarmRepeat(dowTuesday,7,15,10,SilenceHour);  // Monday to Friday every week
+       //wed0 = Alarm.alarmRepeat(dowWednesday,7,15,10,SilenceHour);  // Monday to Friday every week
+       //thu0 = Alarm.alarmRepeat(dowThursday,7,15,10,SilenceHour);  // Monday to Friday every week
+       //fri0 = Alarm.alarmRepeat(dowFriday,7,15,10,SilenceHour);  // Monday to Friday every week  
 
        mon1 = Alarm.alarmRepeat(dowMonday,8,0,10,StartLesson);  // Monday to Friday every week
        tue1 = Alarm.alarmRepeat(dowTuesday,8,0,10,StartLesson);  // Monday to Friday every week
@@ -782,6 +782,11 @@ void editClock(){
 }
 
 void disableAllAlarms(){
+  Alarm.disable(mon0);
+  Alarm.disable(tue0);
+  Alarm.disable(wed0);
+  Alarm.disable(thu0);
+  Alarm.disable(fri0);
   Alarm.disable(mon1);
   Alarm.disable(tue1);
   Alarm.disable(wed1);
@@ -804,6 +809,11 @@ void disableAllAlarms(){
 }
 
 void enableAllAlarms(){
+  Alarm.enable(mon0);
+  Alarm.enable(tue0);
+  Alarm.enable(wed0);
+  Alarm.enable(thu0);
+  Alarm.enable(fri0);
   Alarm.enable(mon1);
   Alarm.enable(tue1);
   Alarm.enable(wed1);
