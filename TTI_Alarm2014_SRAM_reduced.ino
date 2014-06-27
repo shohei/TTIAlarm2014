@@ -192,20 +192,20 @@ void alarmSetup(){
  //    }
 }
 
-//prog_char string_0[] PROGMEM = "Jeopardy:d=4,o=6,b=125:c,f,c,f5,c,f,2c,c,f,c,f,a.,8g,8f,8e,8d,8c#,c,f,c,f5,c,f,2c,f.,8d,c,a#5,a5,g5,f5,p,d#,g#,d#,g#5,d#,g#,2d#,d#,g#,d#,g#,c.7,8a#,8g#,8g,8f,8e,d#,g#,d#,g#5,d#,g#,2d#,g#.,8f,d#,c#,c,p,a#5,p,g#.5,d#,g#";
-//prog_char string_1[] PROGMEM = "Entertainer:d=4,o=5,b=140:8d,8d#,8e,c6,8e,c6,8e,2c.6,8c6,8d6,8d#6,8e6,8c6,8d6,e6,8b,d6,2c6,p,8d,8d#,8e,c6,8e,c6,8e,2c.6,8p,8a,8g,8f#,8a,8c6,e6,8d6,8c6,8a,2d6";
-//prog_char string_2[] PROGMEM = "Indiana:d=4,o=5,b=250:e,8p,8f,8g,8p,1c6,8p.,d,8p,8e,1f,p.,g,8p,8a,8b,8p,1f6,p,a,8p,8b,2c6,2d6,2e6,e,8p,8f,8g,8p,1c6,p,d6,8p,8e6,1f.6,g,8p,8g,e.6,8p,d6,8p,8g,e.6,8p,d6,8p,8g,f.6,8p,e6,8p,8d6,2c6";
-//prog_char string_3[] PROGMEM = "A-Team:d=8,o=5,b=125:4d#6,a#,2d#6,16p,g#,4a#,4d#.,p,16g,16a#,d#6,a#,f6,2d#6,16p,c#.6,16c6,16a#,g#.,2a#";
-//prog_char string_4[] PROGMEM = "Flinstones:d=4,o=5,b=40:32p,16f6,16a#,16a#6,32g6,16f6,16a#.,16f6,32d#6,32d6,32d6,32d#6,32f6,16a#,16c6,d6,16f6,16a#.,16a#6,32g6,16f6,16a#.,32f6,32f6,32d#6,32d6,32d6,32d#6,32f6,16a#,16c6,a#,16a6,16d.6,16a#6,32a6,32a6,32g6,32f#6,32a6,8g6,16g6,16c.6,32a6,32a6,32g6,32g6,32f6,32e6,32g6,8f6,16f6,16a#.,16a#6,32g6,16f6,16a#.,16f6,32d#6,32d6,32d6,32d#6,32f6,16a#,16c.6,32d6,32d#6,32f6,16a#,16c.6,32d6,32d#6,32f6,16a#6,16c7,8a#.6";
-//// Then set up a table to refer to your strings.
-//PROGMEM const char *string_table[] = 	   // change "string_table" name to suit
-//{   
-//  string_0,
-//  string_1,
-//  string_2,
-//  string_3,
-//  string_4 };
-//char buffer[430];    // make sure this is large enough for the largest string it must hold
+prog_char string_0[] PROGMEM = "Jeopardy:d=4,o=6,b=125:c,f,c,f5,c,f,2c,c,f,c,f,a.,8g,8f,8e,8d,8c#,c,f,c,f5,c,f,2c,f.,8d,c,a#5,a5,g5,f5,p,d#,g#,d#,g#5,d#,g#,2d#,d#,g#,d#,g#,c.7,8a#,8g#,8g,8f,8e,d#,g#,d#,g#5,d#,g#,2d#,g#.,8f,d#,c#,c,p,a#5,p,g#.5,d#,g#";
+prog_char string_1[] PROGMEM = "Entertainer:d=4,o=5,b=140:8d,8d#,8e,c6,8e,c6,8e,2c.6,8c6,8d6,8d#6,8e6,8c6,8d6,e6,8b,d6,2c6,p,8d,8d#,8e,c6,8e,c6,8e,2c.6,8p,8a,8g,8f#,8a,8c6,e6,8d6,8c6,8a,2d6";
+prog_char string_2[] PROGMEM = "Indiana:d=4,o=5,b=250:e,8p,8f,8g,8p,1c6,8p.,d,8p,8e,1f,p.,g,8p,8a,8b,8p,1f6,p,a,8p,8b,2c6,2d6,2e6,e,8p,8f,8g,8p,1c6,p,d6,8p,8e6,1f.6,g,8p,8g,e.6,8p,d6,8p,8g,e.6,8p,d6,8p,8g,f.6,8p,e6,8p,8d6,2c6";
+prog_char string_3[] PROGMEM = "A-Team:d=8,o=5,b=125:4d#6,a#,2d#6,16p,g#,4a#,4d#.,p,16g,16a#,d#6,a#,f6,2d#6,16p,c#.6,16c6,16a#,g#.,2a#";
+prog_char string_4[] PROGMEM = "Flinstones:d=4,o=5,b=40:32p,16f6,16a#,16a#6,32g6,16f6,16a#.,16f6,32d#6,32d6,32d6,32d#6,32f6,16a#,16c6,d6,16f6,16a#.,16a#6,32g6,16f6,16a#.,32f6,32f6,32d#6,32d6,32d6,32d#6,32f6,16a#,16c6,a#,16a6,16d.6,16a#6,32a6,32a6,32g6,32f#6,32a6,8g6,16g6,16c.6,32a6,32a6,32g6,32g6,32f6,32e6,32g6,8f6,16f6,16a#.,16a#6,32g6,16f6,16a#.,16f6,32d#6,32d6,32d6,32d#6,32f6,16a#,16c.6,32d6,32d#6,32f6,16a#,16c.6,32d6,32d#6,32f6,16a#6,16c7,8a#.6";
+// Then set up a table to refer to your strings.
+PROGMEM const char *string_table[] = 	   // change "string_table" name to suit
+{   
+  string_0,
+  string_1,
+  string_2,
+  string_3,
+  string_4 };
+char buffer[430];    // make sure this is large enough for the largest string it must hold
 
 void setup() {
   Serial.begin(9600);
@@ -458,63 +458,63 @@ void Silen2(){
 }
 
 void SilenceHour(){
-//  strcpy_P(buffer, (char*)pgm_read_word(&(string_table[0])));
-//  Serial.println(F("jeopardy"));
-//  Serial.println(buffer);
-//  play_rtttl(buffer);
+  strcpy_P(buffer, (char*)pgm_read_word(&(string_table[0])));
+  Serial.println(F("jeopardy"));
+  Serial.println(buffer);
+  play_rtttl(buffer);
   //  char buffer[430];
 //  strcpy_P(buffer, (char*)pgm_read_word(&jeopardy));
 //  play_rtttl(buffer);  
 //play_rtttl(jeopardy);
-   play_rtttl(ateam);
+//   play_rtttl(ateam);
 }
 
 void StartLesson(){ 
-//  strcpy_P(buffer, (char*)pgm_read_word(&(string_table[1])));
-//  Serial.println(F("entertainer"));
-//  Serial.println(buffer);
-//  play_rtttl(buffer);    
+  strcpy_P(buffer, (char*)pgm_read_word(&(string_table[1])));
+  Serial.println(F("entertainer"));
+  Serial.println(buffer);
+  play_rtttl(buffer);    
 //  char buffer[430];
 //  strcpy_P(buffer, (char*)pgm_read_word(&entertainer));
 //  play_rtttl(buffer);  
 //  play_rtttl(entertainer);
-   play_rtttl(ateam);
+//   play_rtttl(ateam);
 }
 
 void BreakTime(){
-//  strcpy_P(buffer, (char*)pgm_read_word(&(string_table[2])));
-//  Serial.println(F("indianna"));
-//  Serial.println(buffer);
-//  play_rtttl(buffer);    
+  strcpy_P(buffer, (char*)pgm_read_word(&(string_table[2])));
+  Serial.println(F("indianna"));
+  Serial.println(buffer);
+  play_rtttl(buffer);    
 //  char buffer[430];
 //  strcpy_P(buffer, (char*)pgm_read_word(&indianna));
 //  play_rtttl(buffer);  
 //  play_rtttl(indianna);
-   play_rtttl(ateam);
+//   play_rtttl(ateam);
 }
 
 void BreakOver(){
-//  strcpy_P(buffer, (char*)pgm_read_word(&(string_table[3])));
-//  Serial.println(F("ateam"));
-//  Serial.println(buffer);
-//  play_rtttl(buffer);    
+  strcpy_P(buffer, (char*)pgm_read_word(&(string_table[3])));
+  Serial.println(F("ateam"));
+  Serial.println(buffer);
+  play_rtttl(buffer);    
   //  char buffer[430];
 //  strcpy_P(buffer, (char*)pgm_read_word(&ateam));
 //  play_rtttl(buffer);  
 //  play_rtttl(ateam);
-   play_rtttl(ateam);
+//   play_rtttl(ateam);
 }
 
 void Closing(){
-//  strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
-//  Serial.println(F("flintstones"));
-//  Serial.println(buffer);
-//  play_rtttl(buffer);    
+  strcpy_P(buffer, (char*)pgm_read_word(&(string_table[4])));
+  Serial.println(F("flintstones"));
+  Serial.println(buffer);
+  play_rtttl(buffer);    
 //  char buffer[430];
 //  strcpy_P(buffer, (char*)pgm_read_word(&flintstones));
 //  play_rtttl(buffer);  
 //  play_rtttl(flintstones);
-   play_rtttl(ateam);
+//   play_rtttl(ateam);
 }
 
 
@@ -782,11 +782,11 @@ void editClock(){
 }
 
 void disableAllAlarms(){
-  Alarm.disable(mon0);
-  Alarm.disable(tue0);
-  Alarm.disable(wed0);
-  Alarm.disable(thu0);
-  Alarm.disable(fri0);
+//  Alarm.disable(mon0);
+//  Alarm.disable(tue0);
+//  Alarm.disable(wed0);
+//  Alarm.disable(thu0);
+//  Alarm.disable(fri0);
   Alarm.disable(mon1);
   Alarm.disable(tue1);
   Alarm.disable(wed1);
@@ -809,11 +809,11 @@ void disableAllAlarms(){
 }
 
 void enableAllAlarms(){
-  Alarm.enable(mon0);
-  Alarm.enable(tue0);
-  Alarm.enable(wed0);
-  Alarm.enable(thu0);
-  Alarm.enable(fri0);
+//  Alarm.enable(mon0);
+//  Alarm.enable(tue0);
+//  Alarm.enable(wed0);
+//  Alarm.enable(thu0);
+//  Alarm.enable(fri0);
   Alarm.enable(mon1);
   Alarm.enable(tue1);
   Alarm.enable(wed1);
